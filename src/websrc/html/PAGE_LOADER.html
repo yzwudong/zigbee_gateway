@@ -1,0 +1,267 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link href='css/required.css' rel='stylesheet' type='text/css' />
+
+
+    <title data-replace="pageName"></title>
+</head>
+
+<body>
+    <div id="smPreloader">
+        <div class="smPreloaderWrapper">
+            <div id="circle-1" class="smCircle">
+            </div>
+            <div id="circle-2" class="smCircle">
+            </div>
+            <div id="circle-3" class="smCircle">
+            </div>
+        </div>
+    </div>
+    
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div class="toast fade toast_show hide" data-bs-autohide="false" role="alert">
+            <div class="toast-header">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                    class="bi bi-info-circle" viewBox="0 0 16 16" reserveAspectRatio="xMidYMid slice" focusable="false"
+                    role="img">
+                    <use xlink:href="icons.svg#info-circle"/>
+                </svg>
+                <strong class="mr-auto" style="padding-left: 10px;" id="toastHeaderText">Tip</strong>
+            </div>
+            <div class="toast-body">
+                <div id="toastBody"></div>
+                <div class="mt-2 pt-2 border-top" id="toastButtons">
+                    <button type="button" class="btn btn-outline-primary" data-bs-dismiss="toast"
+                        onclick="localStorage.setItem('refresh_tip_got', 1)">Got it!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="100"
+        aria-modal="true" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitle">Modal title</h5>
+                    <button type="button" class="btn-close visually-hidden modal-btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="modalBody">
+
+                </div>
+                <div class="modal-footer" id="modalButtons">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--
+    <nav class="navbar shadow sticky-top bg-light" style="display: inline;">  
+        
+        <div class="container">
+            <div class="navbar-brand">
+                <span class="navbar-toggler-icon"
+                    onclick="$('#sidenav').addClass('sidenav-active'); sidenavAutoclose();"></span>
+            </div>
+            <h2 data-replace="pageName" class="position-absolute top-50 start-50 translate-middle"></h2>
+            <a href='/logout' class='btn logoutLink nav-link visually-hidden'>
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                    class="bi bi-door-open" viewBox="0 0 16 16">
+                    <use xlink:href="icons.svg#door-open"/>
+                </svg>
+                <span>Logout</span>
+            </a>
+        </div>
+    </nav>
+-->
+
+<div class="container-fluid">
+	
+		<div class="col-md-12">
+			<nav class="navbar navbar-expand-lg navbar-light bg-light bg-info rounded">
+				 
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMainMenu">
+					<span class="navbar-toggler-icon"></span>
+				</button> 
+                <a class="navbar-brand" href="#">DW_TECH</a>
+				<div class="collapse navbar-collapse" id="navbarMainMenu">
+					<ul class="navbar-nav">
+						<li class="nav-item">
+							 <a class="nav-link" href="/"><i class="glyphicon glyphicon-home"></i>Status</a>
+						</li>
+						<li class="nav-item dropdown">
+							 <a class="nav-link  dropdown-toggle" href="http://dw_tech" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i  class="glyphicon glyphicon-cog"></i>Config</a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                 <a class="dropdown-item" href="/general"><i class="glyphicon glyphicon-list-alt"></i>General</a>
+                                 
+                                 
+                                 <a class="dropdown-item" href="/ethernet"><i class="glyphicon glyphicon-globe"></i>Ethernet</a>
+                                 <a class="dropdown-item" href="/wifi"><i class="glyphicon glyphicon-signal"></i>WiFi</a>
+                                 <!--
+                                 <a class="dropdown-item" href="/serial"><i class="glyphicon glyphicon-wrench"></i>Serial</a>
+                                 <a class="dropdown-item" href="/mqtt"><i class="glyphicon glyphicon-screenshot"></i>MQTT</a>
+                                -->
+								<div class="dropdown-divider">
+								</div> 
+                                <a class="dropdown-item" href="/zha-z2m"><i class="glyphicon glyphicon-book"></i>Z2m&ZHA</a>
+                                <a class="dropdown-item" href="/security"><i class="glyphicon glyphicon-screenshot"></i>Security</a>
+							</div>
+						</li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="http://dw_tech" id="navbarDropdown1" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i  class="glyphicon glyphicon-wrench"></i>Tools</a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <!--
+                                <a class="dropdown-item" href="/logs"><i  class="glyphicon glyphicon-transfer"></i>Console</a>
+                                
+                                <a class="dropdown-item" href="/fsbrowser"><i class="glyphicon glyphicon-floppy-disk"></i>FSbrowser</a>
+                                <a class="dropdown-item" href="/esp_update"><i class="glyphicon glyphicon-open"></i>Update ESP32</a>
+                                -->
+                                <a class="dropdown-item" href="/sys-tools"><i class="glyphicon glyphicon-repeat"></i>sys-tools</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="http://dw_tech" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i  class="glyphicon glyphicon-question-sign"></i>Help</a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <!--
+                                <a class="dropdown-item" href="/content"><i  class="glyphicon glyphicon-transfer"></i>Content</a>
+                                -->
+                                <a class="dropdown-item" href="/about"><i class="glyphicon glyphicon-floppy-disk"></i>About</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a href='/logout' class='btn logoutLink nav-link visually-hidden'>
+                                <i class="glyphicon glyphicon-log-out"></i>
+                                Logout
+                            </a>
+
+                        </li>
+                       
+					</ul>
+					
+					
+				</div>
+                <a class="navbar-brand" href="/" id="modelID">  <strong><span data-replace="hwRev"></span></strong></a>
+ 
+    &nbsp;&nbsp;
+    <a class="navbar-brand" href="/" id="firmWareVer"  >FW version :  <span data-replace="VERSION"></span> </a>
+			</nav>
+		</div>
+	
+</div>
+
+
+    <div class='container-fluid'>
+        <div class='row flex-nowrap'>
+            <!--
+            <div id="sidenav" class='col-auto nav-container px-0 col-md-3 col-xl-2 bg-dark nav-shadow'>
+                <div class='d-flex flex-column align-items-center align-items-sm-start pt-2 text-white min-vh-100'>
+                    <div class='logo-wrapper'>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+                            <use xlink:href="icons.svg#SMLogo"></use></svg>
+                        <span class='fs-5 d-none d-sm-inline'>SLZB-06</span>
+                        </a>
+                    </div>
+                    <ul class='nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start'
+                        id='menu'>
+                        <li class='nav-item'>
+                            <a href='/' class='nav-link align-middle' onclick=''>
+                                <svg xmlns='http://www.w3.org/2000/svg' width='25' height='25' fill='currentColor' class='bi bi-house' viewBox='0 0 16 16'>
+                                    <use xlink:href="icons.svg#house"/>
+                                </svg>
+                                <span class='ms-1 d-none d-sm-inline'>Status</span>
+                            </a>
+                        </li>
+                        <li class='nav-item'>
+                            <a href='/general' class='nav-link align-middle'>
+                                <svg xmlns='http://www.w3.org/2000/svg' width='25' height='25' fill='currentColor' class='bi bi-hdd-stack' viewBox='0 0 16 16'>
+                                    <use xlink:href="icons.svg#hdd-stack"/>
+                                </svg>
+                                <span class='ms-1 d-none d-sm-inline'>General</span>
+                            </a>
+                        </li>
+                        <li class='nav-item'>
+                            <a href='/ethernet' class='nav-link align-middle'>
+                                <svg xmlns='http://www.w3.org/2000/svg' width='25' height='25' fill='currentColor'
+                                    class='bi bi-ethernet' viewBox='0 0 16 16'>
+                                    <use xlink:href="icons.svg#ethernet"/>
+                                </svg>
+                                <span class='ms-1 d-none d-sm-inline'>Ethernet</span>
+                            </a>
+                        </li>
+                        <li class='nav-item'>
+                            <a href='/wifi' class='nav-link align-middle'>
+                                <svg xmlns='http://www.w3.org/2000/svg' width='25' height='25' fill='currentColor'
+                                    class='bi bi-wifi' viewBox='0 0 16 16'>
+                                    <use xlink:href="icons.svg#wifi"/>
+                                </svg>
+                                <span class='ms-1 d-none d-sm-inline'>WiFi</span>
+                            </a>
+                        </li>
+                        <li class='nav-item'>
+                            <a href='/zha-z2m' class='nav-link align-middle'>
+                                <svg xmlns='http://www.w3.org/2000/svg' width='25' height='25' fill='currentColor'
+                                    class='bi bi-activity' viewBox='0 0 16 16'>
+                                    <use xlink:href="icons.svg#activity"/>
+                                </svg>
+                                <span class='ms-1 d-none d-sm-inline'>Z2M and ZHA</span>
+                            </a>
+                        </li>
+                        <li class='nav-item'>
+                            <a href='/security' class='nav-link align-middle'>
+                                <svg xmlns='http://www.w3.org/2000/svg' width='25' height='25' fill='currentColor'
+                                    class='bi bi-lock' viewBox='0 0 16 16'>
+                                    <use xlink:href="icons.svg#lock"/>
+                                </svg>
+                                <span class='ms-1 d-none d-sm-inline'>Security</span>
+                            </a>
+                        </li>
+                        <li class='nav-item'>
+                            <a href='/sys-tools' class='nav-link align-middle'>
+                                <svg xmlns='http://www.w3.org/2000/svg' width='25' height='25' fill='currentColor'
+                                    class='bi bi-cpu' viewBox='0 0 16 16'>
+                                    <use xlink:href="icons.svg#cpu"/>
+                                </svg>
+                                <span class='ms-1 d-none d-sm-inline'>System and Tools</span>
+                            </a>
+                        </li>
+                        <li class='nav-item'>
+                            <a href='/about' class='nav-link align-middle'>
+                                <svg xmlns='http://www.w3.org/2000/svg' width='25' height='25' fill='currentColor'
+                                    class='bi bi-info-square' viewBox='0 0 16 16'>
+                                    <use xlink:href="icons.svg#info-square"/>
+                                </svg>
+                                <span class='ms-1 d-none d-sm-inline'>About</span>
+                            </a>
+                        </li>
+                        <li class='nav-item logoutLink visually-hidden'>
+                            <a href='/logout' class='nav-link align-middle d-none d-sm-inline'>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                                    class="bi bi-door-open" viewBox="0 0 16 16">
+                                    <use xlink:href="icons.svg#door-open"/>
+                                </svg>
+                                <span class='ms-1'>Logout</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <hr>
+                </div>
+            </div>
+        -->
+            <div class='col py-3'>
+                <h2 data-replace="pageName" class="mb-3" id="pagenamePC"></h2>
+                <div id="pageContent" class="container">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type='text/javascript' src='/js/jquery-min.js'></script>
+    <script type='text/javascript' src='/js/bootstrap.min.js'></script>
+    <script type='text/javascript' src='/js/functions.js'></script>
+
+</body>
+
+</html>
