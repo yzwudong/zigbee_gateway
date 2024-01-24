@@ -1,1 +1,1 @@
-# GW_Z_LUW02-or-02P
+# DW_TECH zigbee smart hub
